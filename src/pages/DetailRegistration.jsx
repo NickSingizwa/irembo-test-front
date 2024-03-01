@@ -1,17 +1,17 @@
 import React,{useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
-import EmployeeForm from '../components/EmployeeForm';
+import DetailForm from '../components/DetailForm';
 
-function EmployeeRegistration() {
+function DetailRegistration() {
   const navigate = useNavigate();
 
   return (
     <div>
         <div className='mt-12'>
-            <EmployeeForm/>
+            <DetailForm/>
         </div>
     </div>
   )
 }
 
-export default EmployeeRegistration
+export default DetailRegistration

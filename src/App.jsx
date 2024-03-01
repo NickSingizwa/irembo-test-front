@@ -1,5 +1,5 @@
 import './App.css'
-import EmployeeRegistration from './pages/EmployeeRegistration'
+import DetailRegistration from './pages/DetailRegistration'
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" exact element={<EmployeeRegistration />} />
+          <Route path="/" exact element={<DetailRegistration />} />
         </Routes>
       </Router>
     </div>

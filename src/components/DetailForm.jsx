@@ -4,8 +4,15 @@ import {API_URL} from '../utils/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const EmployeeForm = () => {
+const countries = [
+  { code: '+250', name: 'Rwanda' },
+  { code: '+44', name: 'United Kingdom' },
+  { code: '+1', name: 'United States' },
+];
+
+const DetailForm = () => {
   //input fields states
+  const [countryCode, setCountryCode] = useState('+250');
   const [nationalId, setNationalId] = useState('');
   const [passportId, setPassportId] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -40,7 +47,7 @@ const EmployeeForm = () => {
     try {
       const response = await axios.post(`${API_URL}/registerDetails`, {
         nationalId,
-        telephone,
+        telephone: countryCode + telephone,
         email,
         businessType,
         companyName,
@@ -133,13 +140,24 @@ const EmployeeForm = () => {
       <div className='flex '>
       <div className="mb-6 flex flex-col mr-4 w-[40%]">
       <label className='text-sm'>Phone number</label>
+      <div className="flex">
+        <select
+          className="px-1 py-3 mt-2 border border-gray-300 rounded-l focus:outline-none focus:border-blue-500 placeholder-black text-sm"
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+        >
+          {countries.map(country => (
+            <option key={country.code} value={country.code}>{country.code}</option>
+          ))}
+        </select>
         <input
           type="text"
-          className=" px-4 py-3 mt-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 placeholder-black text-sm"
+          className="w-full px-4 py-3 mt-2 border border-gray-300 rounded-r focus:outline-none focus:border-blue-500 placeholder-black text-sm"
           placeholder="Phone number"
           value={telephone}
           onChange={(e) => setTelephone(e.target.value)}
         />
+      </div>
       </div>
 
       <div className="mb-6 flex flex-col w-[40%]">
@@ -161,6 +179,9 @@ const EmployeeForm = () => {
           <option disabled value="" className='text-gray-500'>Select province</option>
           <option value="East">East</option>
           <option value="West">West</option>
+          <option value="North">North</option>
+          <option value="South">South</option>
+          <option value="Kigali">Kigali</option>
         </select>
       </div>
   </div>
@@ -231,6 +252,9 @@ const EmployeeForm = () => {
           <option disabled value="" className='text-gray-500'>Select province</option>
           <option value="East">East</option>
           <option value="West">West</option>
+          <option value="North">North</option>
+          <option value="South">South</option>
+          <option value="Kigali">Kigali</option>
         </select>
       </div>
 
@@ -339,4 +363,4 @@ const EmployeeForm = () => {
   );
 };
 
-export default EmployeeForm;
+export default DetailForm;
