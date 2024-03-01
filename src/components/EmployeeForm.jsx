@@ -42,12 +42,42 @@ const EmployeeForm = () => {
         nationalId,
         telephone,
         email,
+        businessType,
+        companyName,
+        tinNumber,
+        regDate,
+        businessProvince,
+        purpose,
+        category,
+        weight,
+        unit,
+        quantity,
+        description,
+        citizenship,
+        province,
+        otherpurpose,
+        passportId
       });
         toast.success(response.data.message || 'Details registered successfully');
         //clear all input fields
         setNationalId('');
         setTelephone('');
         setEmail('');
+        setBusinessType('');
+        setCompanyName('');
+        setTinNumber('');
+        setRegDate('');
+        setBusinessProvince('');
+        setPurpose('');
+        setCategory('');
+        setWeight('');
+        setUnit('');
+        setQuantity('');
+        setDescription('');
+        setCitizenship('');
+        setProvince('');
+        setOtherpurpose('');
+        setPassportId('');
      
     } catch (error) {
       toast.error(error?.response?.data?.message || 'An error occurred');
@@ -174,6 +204,8 @@ const EmployeeForm = () => {
           type="text"
           className=" px-4 py-3 mt-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 placeholder-black text-sm"
           placeholder="Enter TIN Number"
+          min={9}
+          max={9}
           value={tinNumber}
           onChange={(e) => setTinNumber(e.target.value)}
           required
@@ -269,7 +301,8 @@ const EmployeeForm = () => {
       <div className="mb-6 flex flex-col w-[40%]">
       <label className='text-sm'>Quantity of product <span className="text-red-600">*</span></label>
         <input
-          type="text"
+          type="number"
+          min={1}
           className=" px-4 py-3 mt-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 placeholder-black text-sm"
           placeholder="Enter quantity of product"
           value={quantity}
